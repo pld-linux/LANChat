@@ -27,7 +27,16 @@ LANChat you can talk with windows and Linux users in your local area
 network. You can use LANChat over networks connected by the BRIDGE.
 
 %description -l pl
-LANChat
+LANChat jest programem do sieciowych pogaduszek. Pozwala na rozmawianie
+ze swoimi znajomymi w sieciach lokalnych opartych na TCP/IP. Nie 
+potrzebuje ¿adnego servera do dzia³ania i ka¿dy u¿ytkownik jest równy.
+Nie jest to aplikacja typu klient-server, wiêc ka¿da maszyna jest jak
+niezale¿ny server. LANChat do komunikacji u¿ywa broadcast UDP, wiêc
+nie s± one wysy³ane do internetu, a tylko do najbli¿szego routera.
+LANChat potrzebuje klasy adresowej C (teoretycznie max 254 u¿ytkowników).
+U¿ywaj±c LANChat'a mo¿esz rozmawiaæ w swojej sieci lokalnej zarówno
+z u¿tkownikami windows'a jak i Linux'a. Mo¿esz te¿ korzystaæ z 
+LANChat'a w sieciach po³±czonych BRIDGE'ami.
 
 %prep
 %setup -q 
