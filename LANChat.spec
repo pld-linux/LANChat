@@ -36,7 +36,10 @@ i Linuksa. Mo¿na te¿ korzystaæ z LANChata w sieciach po³±czonych
 BRIDGE'ami.
 
 %prep
-%setup -q -c
+%setup -q -c -T
+tar zxf %{SOURCE0} -C ..
+cd ..
+chmod u+x %{name}-%{version}
 
 %build
 %{__make} CC="%{__cc} %{rpmcflags} -Wall -I/usr/include/ncurses"
