@@ -5,8 +5,6 @@ Version:	1.0.2
 Release:	2
 License:	GPL
 Group:		Applications/Networking
-Group(de):	Applikationen/Netzwerkwesen
-Group(pl):	Aplikacje/Sieciowe
 Source0:	http://priv4.onet.pl./ki/lanchat/%{name}-%{version}.tar.gz
 Patch0:		%{name}-ac_am.patch
 BuildRequires:	autoconf
