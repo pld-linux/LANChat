@@ -6,9 +6,9 @@ Release:	1
 License:	GPL
 Group:		Applications/Networking
 Source0:	http://melun.republika.pl/%{name}-%{version}.tar.gz
+URL:		http://republika.pl/lanchat/
 BuildRequires:	ncurses-devel >= 5.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-%define		_broot $HOME/rpm/BUILD/%{name}-%{version}
 
 %description
 LANChat a network-chatting program. It allows you to chat with your
@@ -29,35 +29,31 @@ jest równy. Nie jest to aplikacja typu klient-server, wiêc ka¿da
 maszyna jest jak niezale¿ny server. LANChat do komunikacji u¿ywa
 broadcastów UDP, wiêc nie s± one wysy³ane do internetu, a tylko do
 najbli¿szego routera. LANChat potrzebuje klasy adresowej C
-(teoretycznie max 254 u¿ytkowników). U¿ywaj±c LANChata mo¿esz
+(teoretycznie max 254 u¿ytkowników). U¿ywaj±c LANChata mo¿na
 rozmawiaæ w swojej sieci lokalnej zarówno z u¿ytkownikami Windows jak
-i Linuksa. Mo¿esz te¿ korzystaæ z LANChata w sieciach po³±czonych
+i Linuksa. Mo¿na te¿ korzystaæ z LANChata w sieciach po³±czonych
 BRIDGE'ami.
 
 %prep
-#%setup -q 
+%setup -q -c -T
 #
 # Ugly workaround for ugly tarball
 #
-rm -rf %{_broot}
-tar zxfv %{SOURCE0} -C $HOME/rpm/BUILD/
-chmod 755 %{_broot}
-cd %{_broot}
-#
+tar zxfv %{SOURCE0} -C ..
 
 %build
-cd %{_broot}
-make CC="gcc %{rpmcflags} -Wall -I/usr/include/ncurses"
+%{__make} CC="%{__cc} %{rpmcflags} -Wall -I/usr/include/ncurses"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_bindir}
-install %{_broot}/LANChat $RPM_BUILD_ROOT%{_bindir}
+
+install LANChat $RPM_BUILD_ROOT%{_bindir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc %{_broot}/README %{_broot}/ROUTING %{_broot}/BUGS %{_broot}/TODO %{_broot}/lanchat.lsm
+%doc README ROUTING BUGS TODO
 %attr(755,root,root) %{_bindir}/LANChat
