@@ -1,18 +1,14 @@
 Summary:	LANChat - network-chatting program
 Summary(pl):	LANChat - program do sieciowych pogaduszek
 Name:		LANChat
-Version:	1.0.2
-Release:	4
+Version:	1.0.3
+Release:	1
 License:	GPL
 Group:		Applications/Networking
-Source0:	http://priv4.onet.pl./ki/lanchat/%{name}-%{version}.tar.gz
-Patch0:		%{name}-ac_am.patch
-Patch1:		%{name}-wincrash.patch
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	libtool
+Source0:	http://melun.republika.pl/%{name}-%{version}.tar.gz
 BuildRequires:	ncurses-devel >= 5.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+%define		_broot $HOME/rpm/BUILD/%{name}-%{version}
 
 %description
 LANChat a network-chatting program. It allows you to chat with your
@@ -39,30 +35,29 @@ i Linuksa. Mo¿esz te¿ korzystaæ z LANChata w sieciach po³±czonych
 BRIDGE'ami.
 
 %prep
-%setup -q 
-%patch0 -p1
-%patch1 -p1
+#%setup -q 
+#
+# Ugly workaround for ugly tarball
+#
+rm -rf %{_broot}
+tar zxfv %{SOURCE0} -C $HOME/rpm/BUILD/
+chmod 755 %{_broot}
+cd %{_broot}
+#
 
 %build
-rm -f missing
-%{__libtoolize}
-%{__aclocal}
-%{__autoconf}
-%{__automake}
-CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
-%configure
-%{__make}
+cd %{_broot}
+make CC="gcc %{rpmcflags} -Wall -I/usr/include/ncurses"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_bindir}
+install %{_broot}/LANChat $RPM_BUILD_ROOT%{_bindir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc NEWS README ROUTING BUGS TODO lanchat.lsm
+%doc %{_broot}/README %{_broot}/ROUTING %{_broot}/BUGS %{_broot}/TODO %{_broot}/lanchat.lsm
 %attr(755,root,root) %{_bindir}/LANChat
