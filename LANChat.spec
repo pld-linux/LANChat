@@ -1,5 +1,5 @@
 Summary:	LANChat - network-chatting program
-Summary(pl):	LANChat
+Summary(pl):	LANChat - program do sieciowych pogaduszek
 Name:		LANChat
 Version:	1.0.2
 Release:	2
@@ -32,11 +32,11 @@ rozmawianie ze swoimi znajomymi w sieciach lokalnych opartych na
 TCP/IP. Nie potrzebuje ¿adnego servera do dzia³ania i ka¿dy u¿ytkownik
 jest równy. Nie jest to aplikacja typu klient-server, wiêc ka¿da
 maszyna jest jak niezale¿ny server. LANChat do komunikacji u¿ywa
-broadcast UDP, wiêc nie s± one wysy³ane do internetu, a tylko do
+broadcastów UDP, wiêc nie s± one wysy³ane do internetu, a tylko do
 najbli¿szego routera. LANChat potrzebuje klasy adresowej C
-(teoretycznie max 254 u¿ytkowników). U¿ywaj±c LANChat'a mo¿esz
-rozmawiaæ w swojej sieci lokalnej zarówno z u¿tkownikami windows'a jak
-i Linux'a. Mo¿esz te¿ korzystaæ z LANChat'a w sieciach po³±czonych
+(teoretycznie max 254 u¿ytkowników). U¿ywaj±c LANChata mo¿esz
+rozmawiaæ w swojej sieci lokalnej zarówno z u¿ytkownikami Windows jak
+i Linuksa. Mo¿esz te¿ korzystaæ z LANChata w sieciach po³±czonych
 BRIDGE'ami.
 
 %prep
