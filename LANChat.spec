@@ -42,10 +42,11 @@ BRIDGE'ami.
 %patch0 -p1
 
 %build
+rm -f missing
 libtoolize --copy --force
 aclocal
-automake -a -c
 autoconf
+automake -a -c
 CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 %configure
 %{__make}
