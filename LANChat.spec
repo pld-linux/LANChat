@@ -2,11 +2,12 @@ Summary:	LANChat - network-chatting program
 Summary(pl):	LANChat - program do sieciowych pogaduszek
 Name:		LANChat
 Version:	1.0.2
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/Networking
 Source0:	http://priv4.onet.pl./ki/lanchat/%{name}-%{version}.tar.gz
 Patch0:		%{name}-ac_am.patch
+Patch1:		%{name}-wincrash.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
@@ -40,6 +41,7 @@ BRIDGE'ami.
 %prep
 %setup -q 
 %patch0 -p1
+%patch1 -p1
 
 %build
 rm -f missing
