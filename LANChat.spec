@@ -9,6 +9,7 @@ Group(pl):	Aplikacje/Sieciowe
 Group(de):	Applikationen/Netzwerkwesen
 Source0:	http://priv4.onet.pl./ki/lanchat/%{name}-%{version}.tar.gz
 Patch0:		%{name}-ncurses.patch
+Patch1:		%{name}-makefile.patch
 BuildRequires:	ncurses-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -29,18 +30,23 @@ LANChat
 %prep
 %setup -q 
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__make} OPTIMIZE="$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_bindir}
+install LANChat $RPM_BUILD_ROOT%{_bindir}/
+gzip -9nf README ROUTING BUGS COPYING ChangeLog TODO
+
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc {README,ROUTING,BUGS,COPYING,ChangeLog,TODO}.gz lanchat.lsm
+%attr(755,root,root) %{_bindir}/LANChat
