@@ -1,12 +1,12 @@
 Summary:	LANChat - network-chatting program
 Summary(pl):	LANChat - program do sieciowych pogaduszek
 Name:		LANChat
-Version:	1.0.3
-Release:	1
+Version:	1.1.0
+Release:	0.1
 License:	GPL
 Group:		Applications/Networking
-Source0:	http://melun.republika.pl/%{name}-%{version}.tar.gz
-# Source0-md5:	1c964c5610dc32911440be41412498bb
+Source0:	http://republika.pl/lanchat/%{name}-%{version}.tar.gz
+# Source0-md5:	efa396cbe01c1c63e69192ea64dbb407
 URL:		http://republika.pl/lanchat/
 BuildRequires:	ncurses-devel >= 5.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
