@@ -46,7 +46,7 @@ BRIDGE'ami.
 %build
 rm -f missing
 %{__libtoolize}
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
