@@ -8,9 +8,11 @@ Group:		Applications/Networking
 Group(pl):	Aplikacje/Sieciowe
 Group(de):	Applikationen/Netzwerkwesen
 Source0:	http://priv4.onet.pl./ki/lanchat/%{name}-%{version}.tar.gz
-Patch0:		%{name}-ncurses.patch
-Patch1:		%{name}-makefile.patch
-BuildRequires:	ncurses-devel
+Patch0:		%{name}-ac_am.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool
+BuildRequires:	ncurses-devel >= 5.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -30,23 +32,28 @@ LANChat
 %prep
 %setup -q 
 %patch0 -p1
-%patch1 -p1
 
 %build
-%{__make} OPTIMIZE="$RPM_OPT_FLAGS"
+libtoolize --copy --force
+aclocal
+automake -a -c
+autoconf
+CFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g} -I/usr/include/ncurses"
+%configure
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT%{_bindir}
-install LANChat $RPM_BUILD_ROOT%{_bindir}/
-gzip -9nf README ROUTING BUGS COPYING ChangeLog TODO
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
+gzip -9nf NEWS README ROUTING BUGS TODO lanchat.lsm
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc {README,ROUTING,BUGS,COPYING,ChangeLog,TODO}.gz lanchat.lsm
+%doc *.gz
 %attr(755,root,root) %{_bindir}/LANChat
