@@ -6,6 +6,7 @@ Release:	1
 License:	GPL
 Group:		Applications/Networking
 Source0:	http://melun.republika.pl/%{name}-%{version}.tar.gz
+# Source0-md5:	1c964c5610dc32911440be41412498bb
 URL:		http://republika.pl/lanchat/
 BuildRequires:	ncurses-devel >= 5.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
