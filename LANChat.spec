@@ -38,7 +38,7 @@ libtoolize --copy --force
 aclocal
 automake -a -c
 autoconf
-CFLAGS="%{?debug:-O -g}%{!?debug:$RPM_OPT_FLAGS} -I/usr/include/ncurses"
+CFLAGS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS} -I/usr/include/ncurses"
 %configure
 %{__make}
 
