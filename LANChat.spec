@@ -1,15 +1,13 @@
 Summary:	LANChat - network-chatting program
 Summary(pl):	LANChat - program do sieciowych pogaduszek
 Name:		LANChat
-Version:	1.0.2
-Release:	3
+Version:	1.1.0
+Release:	1
 License:	GPL
 Group:		Applications/Networking
-Source0:	http://priv4.onet.pl./ki/lanchat/%{name}-%{version}.tar.gz
-Patch0:		%{name}-ac_am.patch
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	libtool
+Source0:	http://republika.pl/lanchat/%{name}-%{version}.tar.gz
+# Source0-md5:	efa396cbe01c1c63e69192ea64dbb407
+URL:		http://republika.pl/lanchat/
 BuildRequires:	ncurses-devel >= 5.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -32,37 +30,30 @@ jest równy. Nie jest to aplikacja typu klient-server, wiêc ka¿da
 maszyna jest jak niezale¿ny server. LANChat do komunikacji u¿ywa
 broadcastów UDP, wiêc nie s± one wysy³ane do internetu, a tylko do
 najbli¿szego routera. LANChat potrzebuje klasy adresowej C
-(teoretycznie max 254 u¿ytkowników). U¿ywaj±c LANChata mo¿esz
+(teoretycznie max 254 u¿ytkowników). U¿ywaj±c LANChata mo¿na
 rozmawiaæ w swojej sieci lokalnej zarówno z u¿ytkownikami Windows jak
-i Linuksa. Mo¿esz te¿ korzystaæ z LANChata w sieciach po³±czonych
+i Linuksa. Mo¿na te¿ korzystaæ z LANChata w sieciach po³±czonych
 BRIDGE'ami.
 
 %prep
-%setup -q 
-%patch0 -p1
+%setup -q -c -T
+tar zxf %{SOURCE0} -C ..
+cd ..
+chmod u+x %{name}-%{version}
 
 %build
-rm -f missing
-%{__libtoolize}
-aclocal
-%{__autoconf}
-%{__automake}
-CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
-%configure
-%{__make}
+%{__make} CC="%{__cc} %{rpmcflags} -Wall -I/usr/include/ncurses"
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_bindir}
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
-
-gzip -9nf NEWS README ROUTING BUGS TODO lanchat.lsm
+install LANChat $RPM_BUILD_ROOT%{_bindir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc README ROUTING BUGS TODO
 %attr(755,root,root) %{_bindir}/LANChat
