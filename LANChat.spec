@@ -36,11 +36,7 @@ i Linuksa. Mo¿na te¿ korzystaæ z LANChata w sieciach po³±czonych
 BRIDGE'ami.
 
 %prep
-%setup -q -c -T
-#
-# Ugly workaround for ugly tarball
-#
-tar zxfv %{SOURCE0} -C ..
+%setup -q -c
 
 %build
 %{__make} CC="%{__cc} %{rpmcflags} -Wall -I/usr/include/ncurses"
