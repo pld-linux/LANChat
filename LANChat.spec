@@ -46,7 +46,7 @@ rm -f missing
 libtoolize --copy --force
 aclocal
 autoconf
-automake -a -c
+automake -a -c -f
 CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 %configure
 %{__make}
