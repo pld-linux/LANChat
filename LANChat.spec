@@ -1,5 +1,5 @@
 Summary:	LANChat - network-chatting program
-Summary(pl.UTF-8):   LANChat - program do sieciowych pogaduszek
+Summary(pl.UTF-8):	LANChat - program do sieciowych pogaduszek
 Name:		LANChat
 Version:	1.1.0
 Release:	3
